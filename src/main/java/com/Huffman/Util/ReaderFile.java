@@ -5,9 +5,9 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.stream.Collectors;
 
-public class ReaderFile implements Reader<File, String> {
+public class ReaderFile  {
 
-    @Override
+
     public String read(File file) {
         try {
             return Files.readAllLines(file.toPath(), Charset.forName("utf8"))

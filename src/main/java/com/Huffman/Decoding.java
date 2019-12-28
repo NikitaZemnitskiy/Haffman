@@ -2,29 +2,27 @@ package com.Huffman;
 
 import com.Huffman.BinaryTree.BinaryTree;
 import com.Huffman.BinaryTree.TreeNode;
-import com.Huffman.Util.Writer;
-import com.Huffman.Util.Reader;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.BitSet;
 import java.util.LinkedHashMap;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+
+import com.Huffman.Util.WriterStringToFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class Decoding {
     private static Logger logger = LoggerFactory.getLogger(Decoding.class);
     private File file;
     LinkedHashMap<Character, Integer> map;
-    private Reader reader;
-    private Writer writer;
 
-    Decoding(File file, Reader reader, Writer writer) {
+
+    Decoding(File file) {
         this.file = file;
-        this.reader = reader;
-        this.writer = writer;
+
     }
 
     public void decode() {
@@ -60,6 +58,7 @@ public class Decoding {
                 currentNode = currentNode.getLeft();
             }
         }
+        WriterStringToFile writer = new WriterStringToFile();
         writer.write(file, stringBuilder.toString());
     }
 

@@ -5,7 +5,7 @@ import java.util.*;
 
 public class BinaryTree {
 
-    private ArrayList<TreeNode> nodeList = new ArrayList<>();
+    private LinkedList<TreeNode> nodeList = new LinkedList<>();
     private LinkedHashMap<Character, Integer> map;
 
     public BinaryTree(LinkedHashMap<Character, Integer> map) {

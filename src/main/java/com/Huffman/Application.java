@@ -1,10 +1,10 @@
 package com.Huffman;
 
+import ch.qos.logback.classic.Logger;
 import com.Huffman.Util.ReaderFile;
 import com.Huffman.Util.WriterBitSetToFile;
 import com.Huffman.Util.WriterStringToFile;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import org.slf4j.LoggerFactory;
 
 
 import java.io.File;
@@ -12,7 +12,7 @@ import java.io.File;
 
 
 public class Application {
-    private static final Logger logger = LoggerFactory.getLogger(Application.class);
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(Application.class);
 
 
     public static void main(String[] args) {
@@ -25,18 +25,19 @@ public class Application {
         }
         File file = new File(args[0]);
         if(!file.exists()){
-            logger.error("Введите коректный путь к файлу");
+            logger.error("Введите путь к файлу, который хотите закодировать или путь к файлу" +
+                    "с расширеньем '.hf', если хотите файл раскодировать");
             throw new IllegalStateException();
         }
         if (file.getName().endsWith(".hf")) {
             logger.trace("Файл имеет расширение - 'hf'. Запуск декодирования");
-            Decoding decoding = new Decoding(file, new ReaderFile(), new WriterStringToFile());
+            Decoding decoding = new Decoding(file);
             decoding.decode();
 
 
         } else {
             logger.trace("Файл не имеет расширение - 'hf'. Запуск кодирования");
-            Encoding encoding = new Encoding(new ReaderFile(), file, new WriterBitSetToFile());
+            Encoding encoding = new Encoding (file);
             encoding.treeCreating();
         }
     }

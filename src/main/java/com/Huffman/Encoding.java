@@ -2,8 +2,9 @@ package com.Huffman;
 
 import com.Huffman.BinaryTree.BinaryTree;
 import com.Huffman.BinaryTree.TreeNode;
-import com.Huffman.Util.Reader;
-import com.Huffman.Util.Writer;
+
+import com.Huffman.Util.ReaderFile;
+
 
 
 
@@ -11,22 +12,26 @@ import java.io.File;
 import java.util.Comparator;
 import java.util.*;
 import java.util.stream.Stream;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import com.Huffman.Util.WriterBitSetToFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class Encoding {
     private static final Logger logger = LoggerFactory.getLogger(Encoding.class);
+
+
     private File file;
     private String text;
-    private Writer writer;
+
     private char EOF = '∡';
     private CodeTable table = new CodeTable();
 
 
-     Encoding(Reader reader, File file, Writer writer) {
-        this.text = reader.read(file).toString();
-        this.writer = writer;
-        this.file = file;
+     Encoding( File file) {
+         ReaderFile reader = new ReaderFile();
+         this.text = reader.read(file).toString();
+         this.file = file;
     }
 
      void treeCreating() {
@@ -86,7 +91,7 @@ public class Encoding {
                 pos++;
             }
         }
-
+        WriterBitSetToFile writer = new WriterBitSetToFile();
         writer.write(file, bitSet);
         logger.trace("File was writed");
     }
