@@ -35,7 +35,8 @@ public class CodeTable {
                 dos.writeInt(e.getValue());
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            logger.error("СodeTable doesn't exist ");
+            throw new IllegalStateException();
         }
     }
 

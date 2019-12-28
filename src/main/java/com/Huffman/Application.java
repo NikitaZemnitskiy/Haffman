@@ -17,14 +17,18 @@ public class Application {
 
     public static void main(String[] args) {
 
-        if (args.length > 1) {
-            logger.info("Введено больше 1 аргумента, введите 1 аргумент, " +
+        if (args.length != 1) {
+            logger.error("Введено больше 1 аргумента, введите 1 аргумент, " +
                     "который будет путем к файлу, который необходимо сжать " +
                     "или вернуть в исходное состояние");
-            System.exit(0);
+            throw new IllegalStateException();
         }
         File file = new File(args[0]);
-        if (file.getName().contains(".hf")) {
+        if(!file.exists()){
+            logger.error("Введите коректный путь к файлу");
+            throw new IllegalStateException();
+        }
+        if (file.getName().endsWith(".hf")) {
             logger.trace("Файл имеет расширение - 'hf'. Запуск декодирования");
             Decoding decoding = new Decoding(file, new ReaderFile(), new WriterStringToFile());
             decoding.decode();
