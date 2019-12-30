@@ -1,4 +1,4 @@
-package com.Huffman.Util;
+package com.huffman.util;
 
 import java.io.*;
 import java.util.BitSet;
@@ -6,7 +6,7 @@ import java.util.BitSet;
 public class WriterBitSetToFile  {
 
 
-    public void write(File file, BitSet bitSet) {
+    public static void write(File file, BitSet bitSet) {
        /* String newName = file.getName().substring(0, file.getName().indexOf("."));
         newName = newName.concat(".hf");*/
        String newName = file.getName().concat(".hf");

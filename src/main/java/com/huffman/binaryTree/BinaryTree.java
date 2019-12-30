@@ -1,4 +1,4 @@
-package com.Huffman.BinaryTree;
+package com.huffman.binaryTree;
 
 
 import java.util.*;
@@ -25,7 +25,7 @@ public class BinaryTree {
 
             int sumValue = node1.value + node2.value;
             String str = node1.str.concat(node2.str);
-            //Меньшая нода идет на лево
+
             TreeNode newTreenode = new TreeNode(sumValue, str, node1, node2);
             nodeList.remove(node1);
             nodeList.remove(node2);

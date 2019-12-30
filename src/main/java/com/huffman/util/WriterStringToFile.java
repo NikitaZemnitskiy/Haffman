@@ -1,4 +1,4 @@
-package com.Huffman.Util;
+package com.huffman.util;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,7 +8,7 @@ public class WriterStringToFile  {
 
 
 
-    public void write(File file, String s) {
+    public static void write(File file, String s) {
         String fileNewName = file.getName().substring(0, file.getName().indexOf("."));
         try (FileWriter fileWriter = new FileWriter(fileNewName+".txt")) {
             fileWriter.write(s);

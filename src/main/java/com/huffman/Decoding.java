@@ -1,7 +1,7 @@
-package com.Huffman;
+package com.huffman;
 
-import com.Huffman.BinaryTree.BinaryTree;
-import com.Huffman.BinaryTree.TreeNode;
+import com.huffman.binaryTree.BinaryTree;
+import com.huffman.binaryTree.TreeNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,13 +9,11 @@ import java.nio.file.Files;
 import java.util.BitSet;
 import java.util.LinkedHashMap;
 
-import com.Huffman.Util.WriterStringToFile;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.huffman.util.WriterStringToFile;
 
 
 public class Decoding {
-    private static Logger logger = LoggerFactory.getLogger(Decoding.class);
+
     private File file;
     LinkedHashMap<Character, Integer> map;
 
@@ -36,8 +34,7 @@ public class Decoding {
         try {
             fileContent = Files.readAllBytes(file.toPath());
         } catch (IOException e) {
-            logger.error("File is missing");
-            throw new IllegalStateException();
+            throw new IllegalStateException(e.getMessage());
         }
 
         BitSet bitSet = BitSet.valueOf(fileContent);
@@ -58,8 +55,7 @@ public class Decoding {
                 currentNode = currentNode.getLeft();
             }
         }
-        WriterStringToFile writer = new WriterStringToFile();
-        writer.write(file, stringBuilder.toString());
+        WriterStringToFile.write(file, stringBuilder.toString());
     }
 
 }

@@ -1,15 +1,12 @@
-package com.Huffman;
+package com.huffman;
 
-
-import ch.qos.logback.classic.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
 
 
 public class CodeTable {
-    private static Logger logger = (Logger) LoggerFactory.getLogger(CodeTable.class);
+
     private LinkedHashMap<Character, Integer> map;
     static final String FILENAME = "Codetable.txt";
     static final int SIGNATURE = 0xDDEECCBB;
@@ -35,8 +32,8 @@ public class CodeTable {
                 dos.writeInt(e.getValue());
             }
         } catch (IOException e) {
-            logger.error("СodeTable doesn't exist ");
-            throw new IllegalStateException();
+
+            throw new IllegalStateException(e.getMessage());
         }
     }
 
@@ -46,8 +43,7 @@ public class CodeTable {
             LinkedHashMap<Character, Integer> map = new LinkedHashMap<>();
             this.map = map;
             if (dis.readInt() != SIGNATURE) {
-                logger.error("Wrong code table");
-                throw new IllegalStateException();
+                throw new IllegalStateException("Wrong code table");
             }
             int size = dis.readInt();
             for (int i = 0; i < size; i++) {
@@ -56,7 +52,7 @@ public class CodeTable {
                 map.put(key, value);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException(e.getMessage());
         }
     }
 }

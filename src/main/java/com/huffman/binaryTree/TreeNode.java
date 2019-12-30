@@ -1,4 +1,4 @@
-package com.Huffman.BinaryTree;
+package com.huffman.binaryTree;
 
 public class TreeNode {
     int value;
@@ -21,7 +21,7 @@ public class TreeNode {
 
 
     public boolean isLast() {
-        return getLeft() == null && getRight() == null ? true:false;
+        return getLeft() == null && getRight() == null;
     }
 
     public TreeNode getLeft() {

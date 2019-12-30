@@ -1,9 +1,9 @@
-package com.Huffman;
+package com.huffman;
 
-import com.Huffman.BinaryTree.BinaryTree;
-import com.Huffman.BinaryTree.TreeNode;
+import com.huffman.binaryTree.BinaryTree;
+import com.huffman.binaryTree.TreeNode;
 
-import com.Huffman.Util.ReaderFile;
+import com.huffman.util.ReaderFile;
 
 
 
@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.Comparator;
 import java.util.*;
 import java.util.stream.Stream;
-import com.Huffman.Util.WriterBitSetToFile;
+import com.huffman.util.WriterBitSetToFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,18 +24,17 @@ public class Encoding {
     private File file;
     private String text;
 
-    private char EOF = '∡';
     private CodeTable table = new CodeTable();
 
 
      Encoding( File file) {
          ReaderFile reader = new ReaderFile();
-         this.text = reader.read(file).toString();
+         this.text = reader.read(file);
          this.file = file;
     }
 
      void treeCreating() {
-        text = text.concat(Character.toString(EOF));
+
         char[] charsArr = text.toCharArray();
         Set<Character> charSet = new HashSet<>();
         for (char c : charsArr) {
@@ -73,9 +72,7 @@ public class Encoding {
         char[] charsArray = text.toCharArray();
         int pos = 0;
         for (char c : charsArray) {
-            if (c == EOF) {
-                break;
-            }
+
             TreeNode currentNode = binaryTree.getFirstNode();
 
             while (!currentNode.isLast()) {
@@ -85,15 +82,13 @@ public class Encoding {
                     bitSet.set(pos);
                     currentNode = currentNode.getRight();
                 } else {
-                    logger.error("Буквы нет в дереве, буква " + c + " отсутствует");
                     throw new IllegalStateException("Буквы нет в дереве, буква '" + c + "' отсутствует");
                 }
                 pos++;
             }
         }
-        WriterBitSetToFile writer = new WriterBitSetToFile();
-        writer.write(file, bitSet);
-        logger.trace("File was writed");
+        WriterBitSetToFile.write(file, bitSet);
+        logger.trace("File has been written");
     }
 
 }

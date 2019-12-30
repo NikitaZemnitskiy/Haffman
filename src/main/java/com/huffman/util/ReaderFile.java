@@ -1,4 +1,4 @@
-package com.Huffman.Util;
+package com.huffman.util;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class ReaderFile  {
 
 
-    public String read(File file) {
+    public static String read(File file) {
         try {
             return Files.readAllLines(file.toPath(), Charset.forName("utf8"))
                     .stream()
