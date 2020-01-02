@@ -2,17 +2,12 @@ package com.huffman;
 
 import com.huffman.binaryTree.BinaryTree;
 import com.huffman.binaryTree.TreeNode;
-
 import com.huffman.util.ReaderFile;
-
-
-
-
 import java.io.File;
 import java.util.Comparator;
 import java.util.*;
 import java.util.stream.Stream;
-import com.huffman.util.WriterBitSetToFile;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,32 +58,9 @@ public class Encoding {
 
         BinaryTree binaryTree = new BinaryTree((LinkedHashMap) result);
         binaryTree.createBinaryTree();
-        transformToBinaryCode(binaryTree);
+        BitSetCreator bitSetCreator = new BitSetCreator(binaryTree, text);
+        bitSetCreator.writeBitSetToFile(file);
 
-    }
-
-    private void transformToBinaryCode(BinaryTree binaryTree) {
-        BitSet bitSet = new BitSet();
-        char[] charsArray = text.toCharArray();
-        int pos = 0;
-        for (char c : charsArray) {
-
-            TreeNode currentNode = binaryTree.getFirstNode();
-
-            while (!currentNode.isLast()) {
-                if (currentNode.getLeft().getStr().contains(Character.toString(c))) {
-                    currentNode = currentNode.getLeft();
-                } else if (currentNode.getRight().getStr().contains(Character.toString(c))) {
-                    bitSet.set(pos);
-                    currentNode = currentNode.getRight();
-                } else {
-                    throw new IllegalStateException("Буквы нет в дереве, буква '" + c + "' отсутствует");
-                }
-                pos++;
-            }
-        }
-        WriterBitSetToFile.write(file, bitSet);
-        logger.trace("File has been written");
     }
 
 }

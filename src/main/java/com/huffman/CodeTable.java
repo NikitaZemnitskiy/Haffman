@@ -8,8 +8,8 @@ import java.util.*;
 public class CodeTable {
 
     private LinkedHashMap<Character, Integer> map;
-    static final String FILENAME = "Codetable.txt";
-    static final int SIGNATURE = 0xDDEECCBB;
+    private static final String FILENAME = "Codetable.txt";
+    private static final int SIGNATURE = 0xDDEECCBB;
 
     public LinkedHashMap<Character, Integer> getMap() {
         return map;

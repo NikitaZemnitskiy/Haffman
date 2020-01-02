@@ -30,14 +30,8 @@ public class Decoding {
 
         BinaryTree binaryTree = new BinaryTree(map);
         binaryTree.createBinaryTree();
-        byte[] fileContent;
-        try {
-            fileContent = Files.readAllBytes(file.toPath());
-        } catch (IOException e) {
-            throw new IllegalStateException(e.getMessage());
-        }
-
-        BitSet bitSet = BitSet.valueOf(fileContent);
+        BitSetCreator bitSetCreator = new BitSetCreator(file);
+        BitSet bitSet = bitSetCreator.getBitSet();
 
         TreeNode currentNode = binaryTree.getFirstNode();
 
