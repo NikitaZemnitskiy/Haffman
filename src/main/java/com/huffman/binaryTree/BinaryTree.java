@@ -2,6 +2,7 @@ package com.huffman.binaryTree;
 
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class BinaryTree {
 
@@ -10,6 +11,9 @@ public class BinaryTree {
 
     public BinaryTree(LinkedHashMap<Character, Integer> map) {
         this.map = map;
+    }
+    public BinaryTree(String text) {
+        this.map = createSortedLinkedHashMapFromString(text);
     }
 
     public void createBinaryTree() {
@@ -51,5 +55,24 @@ public class BinaryTree {
 
     public TreeNode getFirstNode() {
         return nodeList.get(0);
+    }
+
+    private LinkedHashMap<Character, Integer> createSortedLinkedHashMapFromString(String text){
+        Map<Character, Integer> charMap = new TreeMap<>();
+        char[] charsArr = text.toCharArray();
+        for (char c : charsArr) {
+            if(charMap.containsKey(c)){
+                charMap.put(c,charMap.get(c)+1);
+            }
+            else
+                charMap.put(c, 1);
+        }
+        LinkedHashMap<Character, Integer> result = new LinkedHashMap<>();
+        Stream<Map.Entry<Character, Integer>> st = charMap.entrySet().stream();
+        st.sorted(Comparator.comparing(e -> e.getValue())).forEach(e -> result.put(e.getKey(), e.getValue()));
+        return result;
+    }
+    public Map<Character, Integer> getMap(){
+        return this.map;
     }
 }

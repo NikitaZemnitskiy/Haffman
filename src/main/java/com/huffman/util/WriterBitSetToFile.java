@@ -7,8 +7,8 @@ public class WriterBitSetToFile  {
 
 
     public static void write(File file, BitSet bitSet) {
-       /* String newName = file.getName().substring(0, file.getName().indexOf("."));
-        newName = newName.concat(".hf");*/
+      //  String newName = file.getName().substring(0, file.getName().indexOf(".")).concat(".hf");
+
        String newName = file.getName().concat(".hf");
         try (FileOutputStream fos = new FileOutputStream(newName)) {
 
