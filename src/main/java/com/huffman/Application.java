@@ -3,7 +3,6 @@ package com.huffman;
 import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import java.io.File;
 
 

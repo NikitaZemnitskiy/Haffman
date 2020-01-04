@@ -2,14 +2,11 @@ package com.huffman;
 
 import com.huffman.binaryTree.BinaryTree;
 import com.huffman.binaryTree.TreeNode;
+import com.huffman.util.WriterStringToFile;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.BitSet;
 import java.util.LinkedHashMap;
-
-import com.huffman.util.WriterStringToFile;
 
 
 public class Decoding {
@@ -49,7 +46,9 @@ public class Decoding {
                 currentNode = currentNode.getLeft();
             }
         }
-        WriterStringToFile.write(file, stringBuilder.toString());
+        String text = stringBuilder.toString();
+        text = text.substring(0,text.indexOf(Encoding.EOF));
+        WriterStringToFile.write(file, text);
     }
 
 }

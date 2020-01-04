@@ -1,21 +1,18 @@
 package com.huffman;
 
 import com.huffman.binaryTree.BinaryTree;
-import com.huffman.binaryTree.TreeNode;
 import com.huffman.util.ReaderFile;
-import java.io.File;
-import java.util.Comparator;
-import java.util.*;
-import java.util.stream.Stream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.File;
+import java.util.LinkedHashMap;
+
+
 
 
 public class Encoding {
-    private static final Logger logger = LoggerFactory.getLogger(Encoding.class);
 
 
+    public final static char EOF = '†';
     private File file;
     private String text;
 
@@ -24,7 +21,7 @@ public class Encoding {
 
      Encoding( File file) {
          ReaderFile reader = new ReaderFile();
-         this.text = reader.read(file);
+         this.text = reader.read(file) + EOF;
          this.file = file;
     }
 
